@@ -36,9 +36,23 @@
              </div>
 
              <div class="form-group mt-4">
+                <label class="control-label">categoria</label>
+                <select  name="type_id" id="type_id" class="form-control @error('type_id') is-invalid @enderror" placeholder="type_id" value="{{ old('type_id')}}">
+                    <option value="">seleziona categoria</option>
+                    @foreach($types as $type)
+                       <option value="{{$type->id}}">{{$type->name}}</option>
+                    @endforeach
+                </select>
+             </div> 
+             @error('type_id')
+             <div class="text-danger">{{ $message}}</div>
+             @enderror
+
+             <div class="form-group mt-4">
                 <label class="control-label">immagine</label>
                 <input type="file" name="cover_image" id="cover_image" class="form-control @error('cover_image') is-invalid @enderror" placeholder="cover_image" value="{{ old('content')}}">
              </div> 
+
              <div class="form-group mt-4">
                 <button type="submit" class="btn btn-success">Salva</button>
              </div>

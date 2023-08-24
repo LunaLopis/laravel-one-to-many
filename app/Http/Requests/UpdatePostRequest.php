@@ -24,14 +24,17 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:50'
+            'title' => 'required|max:50',
+            'type_id' => 'required|exists:types,id',
         ];
         
     }
     public function messages(){
         return [
             'title.required' => 'il titolo è obbligatorio',
-            'title.max' => 'il titolo deve essere lungo massimo 50 caratteri'
+            'title.max' => 'il titolo deve essere lungo massimo 50 caratteri',
+            'types_id.required' => 'Devi selezionare una categoria',
+             'type_id.exists' => 'categoria selezionata non valida',
         ];
     }
 }

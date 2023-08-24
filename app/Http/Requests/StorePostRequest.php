@@ -24,7 +24,8 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:50'
+            'title' => 'required|max:50',
+            'type_id' => 'required|exists:types,id',
         ];
     }
 
@@ -32,6 +33,8 @@ class StorePostRequest extends FormRequest
         return [
             'title.required' => 'il titolo è obbligatorio',
             'title.max' => 'il titolo deve essere lungo massimo :max caratteri',
+             'type_id.required' => 'Devi selezionare una categoria',
+             'type_id.exists' => 'categoria selezionata non valida',
             
         ];
     }

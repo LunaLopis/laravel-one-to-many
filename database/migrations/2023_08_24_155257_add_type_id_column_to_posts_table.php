@@ -29,7 +29,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-           $table->dropForeign('posts_type_id_foreign');
+            $table->dropForeign('posts_type_id_foreign');
            $table->dropColumn('type_id');
         });
     }
