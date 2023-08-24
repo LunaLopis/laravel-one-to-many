@@ -8,7 +8,7 @@ import.meta.glob([
 
 const deleteSubmitButton = document.querySelectorAll('.delete-post-form button[type="submit"]');
 
-deleteSubmitButton.foreach((button) => {
+deleteSubmitButton.forEach((button) => {
     button.addEventListener('click', (event) => {
         event.preventDefault();
 
