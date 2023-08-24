@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Https\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
 use App\Models\Type;
@@ -17,7 +17,9 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::all();
+        // path, non nome della rotta
+        return view('admin.types.index', compact('types'));
     }
 
     /**
@@ -27,7 +29,8 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        $types = Type::all();
+        return view('admin.types.create', compact('types'));
     }
 
     /**
@@ -36,9 +39,20 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTypeRequest $request)
     {
-        //
+        
+        $form_data = $request->validated();
+
+        $type = new Type();
+        $type->name = $form_data['name'];
+        $slug = $type->generateSlug($form_data['name']);
+        $form_data['slug'] = $slug;
+        $type->fill($form_data);
+    
+        $type->save();
+        
+        return redirect()->route('admin.types.index');
     }
 
     /**
@@ -72,7 +86,10 @@ class TypeController extends Controller
      */
     public function update(Request $request, Type $type)
     {
-        //
+        $form_data = $request->all();
+        $form_data['slug'] = $type->generateSlug($form_data['name']);
+        $type->update($form_data);
+        return redirect()->route('admin.types.index', $type->id);
     }
 
     /**

@@ -50,7 +50,7 @@
                 <select  name="type_id" id="type_id" class="form-control @error('type_id') is-invalid @enderror" placeholder="type_id" value="{{ old('type_id')}}">
                     <option value="">seleziona categoria</option>
                     @foreach($types as $type)
-                       <option value="{{$type->id}}">{{$type->name}}</option>
+                    <option {{$type->id == old('type_id', $post->type_id) ? 'selected' : ''}} value="{{$type->id}}">{{$type->name}}</option>
                     @endforeach
                 </select>
              </div> 

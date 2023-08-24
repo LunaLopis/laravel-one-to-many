@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePostRequest extends FormRequest
+class StoreTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,14 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:50',
-            'type_id' => 'required|exists:types,id',
+            'name' => 'required',
         ];
-        
     }
     public function messages(){
         return [
-            'title.required' => 'il titolo è obbligatorio',
-            'title.max' => 'il titolo deve essere lungo massimo 50 caratteri',
-            'type_id.required' => 'Devi selezionare una categoria',
-             'type_id.exists' => 'categoria selezionata non valida',
+            'name.required' => 'il titolo è obbligatorio',
+
+            
         ];
     }
 }
