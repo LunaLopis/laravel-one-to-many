@@ -62,10 +62,8 @@ class TypeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Type $type)
-    {
-        $posts = $type->posts; 
-    
-        return view('admin.types.show', compact('type', 'posts'));
+    {     
+        return view('admin.types.show', compact('type'));
     }
 
     /**
