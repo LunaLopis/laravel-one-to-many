@@ -63,7 +63,9 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        $posts = $type->posts; 
+    
+        return view('admin.types.show', compact('type', 'posts'));
     }
 
     /**
@@ -74,7 +76,8 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        $types = Type::all();
+        return view('admin.types.edit', compact('types'));
     }
 
     /**
