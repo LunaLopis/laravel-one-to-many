@@ -103,6 +103,11 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        {
+            // copio per eliminare il file dal progetto
+            $type->delete();
+            $message = 'Cancellazione categoria completata';
+            return redirect()->route('admin.types.index', ['message' => $message]);
+        }
     }
 }
